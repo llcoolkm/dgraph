@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #
-# fsgrowth - report the daily growth of filesystems through mail
+# draphg - create a report on a collected value
 #
 # - Schedule in cron every hour or every day. Delta is given in seconds in report
 # - Writes to history file and compare delta
@@ -35,10 +35,10 @@ from pretty_html_table import build_table
 hostname = socket.gethostname()
 
 # SMTP server
-smtphost = 'smtp.sebot.local'
+smtphost = 'smtp.server.tld'
 smtpport = 25
-smtpfrom = 'fsgrowth@addpro.se'
-smtprcvr = 'david.henden@addpro.se'
+smtpfrom = 'dgraph@domain.tld'
+smtprcvr = 'name.name@domain.tld'
 
 # }}}
 # def main(): {{{
@@ -161,7 +161,7 @@ def loadhistory(history_file):
             exit(-1)
     else:
         if not args.quiet:
-            print('Did not load history file {}'.format(history_file))
+            print('Unable to load history file {}'.format(history_file))
 
     return history
 
@@ -170,7 +170,7 @@ def loadhistory(history_file):
 # def collectdata(): {{{
 #------------------------------------------------------------------------------
 def collectdata(fs):
-    """Collect data from all file systems and return as an array"""
+    """Collect data from command"""
 
     now = datetime.now().replace(microsecond=0)
 
